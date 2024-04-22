@@ -1,0 +1,63 @@
+/* CSS-Stile */
+#map {
+    height: 400px;
+}
+#company-table {
+    width: 100%;
+}
+#header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: relative; /* hinzugefügt */
+}
+#header h1 {
+    margin: 0;
+}
+#footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+/* hinzugefügter Stil für das Dummy-Logo */
+#logo-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+#dummy-logo {
+    width: 100px;
+    height: auto;
+}
+/* Stil für die Menüliste */
+#menu {
+    position: absolute;
+    top: 20px;
+    z-index: 1000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: none; /* Menüliste standardmäßig ausblenden */
+}
+#menu.active {
+    display: block; /* Menüliste anzeigen, wenn aktiviert */
+}
+#menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#menu li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+#menu li:hover {
+    background-color: #f5f5f5;
+}

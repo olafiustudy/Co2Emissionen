@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CO2-Emissionen nach Land/Unternehmen</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hier wird der HTML-Inhalt eingefügt -->
+    <div id="header">
+        <div id="logo-container">
+            <img src="pfad/zum/deinem/logo.png" alt="Logo" id="dummy-logo">
+        </div>
+        <h1>CO2-Emissionen</h1>
+        <!-- Menüschalter -->
+        <div id="menu-toggle">Menü</div>
+        <!-- Menüliste -->
+        <div id="menu">
+            <ul>
+                <li align: "left"><a href="https://de.statista.com/statistik/daten/studie/1381466/umfrage/entwicklung-der-co2-emissionen-in-china/">Statista Co2-Emissionen China</a></li>
+                <li><a href="https://de.statista.com/statistik/daten/studie/2275/umfrage/hoehe-der-co2-emissionen-in-deutschland-seit-1990/">Statista Co2-Emissionen Deutschland</a></li>
+                <li><a href="https://www.srf.ch/news/international/globaler-hoechstwert-co-emissionen-steigen-weltweit-auch-2023-weiter-an#:~:text=Die%20globalen%20CO%E2%82%82%2DEmissionen%20durch,Tonnen%20im%20Jahr%20einen%20H%C3%B6chstwert.">CO₂-Emissionen steigen weltweit auch 2023 weiter an</a></li>
+                <!-- Weitere Links/News hinzufügen -->
+            </ul>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-6">
+                <div id="map"></div>
+            </div>
+            <div class="col-lg-6 mt-3 mt-lg-0">
+                <h2>CO2-Emissionen der Unternehmen nach Land</h2>
+                <table id="company-table" class="table">
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)">Unternehmen</th>
+                            <th onclick="sortTable(1)">CO2-Emissionen (in Tonnen)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Die Daten der Unternehmen werden durch die interaktive Karte eingefügt über JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+	<p>
+		© 2024 Co2-Dummy-Unternehmen. Alle Rechte vorbehalten.
+		<a href="#">Datenschutzerklärung</a>
+		<a href="#">Allgemeine Geschäftsbedingungen</a>
+		<a href="#">Impressum</a
+	</p>
+    </div>
+
+    <!-- Bootstrap JavaScript und Leaflet JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- DataTables JavaScript -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <!-- JavaScript für die Seite -->
+    <script src="functions.js"></script>
+</body>
+</html>
