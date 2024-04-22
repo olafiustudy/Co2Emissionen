@@ -1,5 +1,4 @@
-// JavaScript-Funktionen
-// Beispiel für die Interaktion mit der Karte (mithilfe von Dummy-Daten)
+// Dummy-Daten für die Unternehmen inkl. Emissionen erzeugen
 const companyData = {
     "Deutschland": [
         { name: "Volkswagen", emissions: 5000 },
@@ -46,29 +45,27 @@ const companyData = {
         { name: "Honda", emissions: 4000 },
         { name: "Nissan", emissions: 3000 }
     ],
-    // Weitere Länder und Unternehmen hinzufügen ...
 };
 
-// Länder mit ihren Koordinaten
+// Dummy Daten für Länder inkl. Koordinaten erzeugen zur Darstellung des PINs auf der Karte 
 const countries = {
-    "Deutschland": [51.1657, 10.4515],
-    "Frankreich": [46.6034, 1.8883],
-    "Vereinigte Staaten": [37.0902, -95.7129],
-    "China": [35.8617, 104.1954],
-    "Brasilien": [-14.2350, -51.9253],
-    "Indien": [20.5937, 78.9629],
-    "Russland": [61.5240, 105.3188],
-    "Japan": [36.2048, 138.2529],
-    // Weitere Länder hinzufügen ...
+    "Deutschland": [51, 10],
+    "Frankreich": [46, 2],
+    "Vereinigte Staaten": [37, -96],
+    "China": [35, 104],
+    "Brasilien": [-14, -52],
+    "Indien": [21, 79],
+    "Russland": [62, 105],
+    "Japan": [36, 138],
 };
 
-// Aktuell ausgewähltes Land
+// Aktuell ausgewähltes Land speichern 
 let currentCountry = null;
 
-// Initialisiere Leaflet Karte
+// Initialisiere interaktiven Leaflet Karte
 var map = L.map('map').setView([20, 0], 2);
 
-// Füge OpenStreetMap Kacheln hinzu
+// Füge OpenStreetMap Kacheln hinzu, die als Hintergrund für Leatlet dient 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
@@ -89,6 +86,7 @@ function updateTable(country) {
     currentCountry = country; // Aktuelles Land aktualisieren
     tableBody.innerHTML = ""; // Tabelle leeren
 
+    // Tabelle mit Unternehmensinformation füllen 
     const companies = companyData[country];
     if (companies) {
         companies.forEach(company => {
@@ -104,24 +102,6 @@ function updateTable(country) {
     $('#company-table').DataTable();
 }
 
-// JavaScript für das Menü
-const menuToggle = document.getElementById('menu-toggle');
-const menu = document.getElementById('menu');
-
-menuToggle.addEventListener('click', function() {
-    menu.classList.toggle('active');
-});
-
-// JavaScript für die Positionierung des Menüs basierend auf der Leserichtung
-const direction = getComputedStyle(document.body).direction; // Leserichtung der Webseite
-if (direction === 'rtl') { // Wenn von rechts nach links gelesen wird
-    menu.style.right = '20px'; // Menü rechts ausrichten
-    menu.style.left = 'auto'; // linke Position auf automatisch setzen
-} else { // Wenn von links nach rechts gelesen wird
-    menu.style.left = '20px'; // Menü links ausrichten
-    menu.style.right = 'auto'; // rechte Position auf automatisch setzen
-}
-
 // Funktion zum Sortieren der Tabelle
 function sortTable(columnIndex) {
     const table = $('#company-table').DataTable();
@@ -132,16 +112,31 @@ function sortTable(columnIndex) {
         const data = companies.map(company => [company.name, company.emissions]);
         // Sortieren des Arrays basierend auf dem ausgewählten Spaltenindex
         data.sort((a, b) => {
-            // 'a' und 'b' sind Arrays mit Unternehmensdaten [name, emissions]
             return a[columnIndex] - b[columnIndex];
         });
-        // Leeren der Tabelle
+
         table.clear();
-        // Hinzufügen der sortierten Daten zur Tabelle
+        // Sortierte Daten der Tabelle hinzufügen 
         data.forEach(row => {
             table.row.add(row);
         });
         // Neu zeichnen der Tabelle
         table.draw();
     }
+}
+
+// Öffnen des Menüs 
+const menuToggle = document.getElementById('menu-toggle');
+const menu = document.getElementById('menu');
+
+menuToggle.addEventListener('click', function() {
+    menu.classList.toggle('active');
+});
+
+// Positionierung des Menüs basierend auf der Leserichtung
+const direction = getComputedStyle(document.body).direction; // Leserichtung der Webseite ermitteln
+if (direction === 'rtl') { // Leserichtung rechts nach links - Menü rechts ausrichten
+    menu.style.right = '20px'; 
+} else { // Leserichtung links nach rechts - Menü links ausrichten
+    menu.style.left = '20px'; 
 }
